@@ -1,0 +1,3 @@
+﻿  main.cpp
+main.obj : error LNK2019: unresolved external symbol _glfwInit referenced in function _main
+C:\Users\q5183101\Source\repos\FYP project Q5183101\Debug\FYP project Q5183101.exe : fatal error LNK1120: 1 unresolved externals
