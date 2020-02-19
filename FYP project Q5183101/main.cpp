@@ -1,7 +1,7 @@
 #include <GLFW/glfw3.h>
 #include <GL/freeglut.h>
 #include <iostream>
-
+// set main loop and basic particle render with physics and timestep
 GLfloat xRotated, yRotated, zRotated;
 GLdouble radius = 1;
 
