@@ -11,8 +11,8 @@ class Particle
 	
 	float Mass;
 	vec3 Position;
-
 	vec3 Velocity;
+	vec3 acceleration;
 
 
 public:

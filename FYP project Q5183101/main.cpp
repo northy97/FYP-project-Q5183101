@@ -49,13 +49,13 @@ void initParticles()
 {
 	vec3 position(-4, 0, -20);
 	vec3 velocity(0, 0, 0 );
+	float spacing = 0.2;
 	
-	
-	for (int y = 0; y < 5; y ++)
+	for (int y = 0; y < 20; y ++)
 	{
-		for (int x= 0; x < 5; x++)
+		for (int x= 0; x < 20; x++)
 		{
-			addParticle(vec3(position.x + x, position.y+y,position.z), velocity);
+			addParticle(vec3(position.x + (x * spacing), position.y+(y * spacing),position.z), velocity);
 			std::cout << particles.size() << std::endl;
 		}
 
@@ -91,7 +91,7 @@ int main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
 	glutInitWindowSize(350, 350);
-	glutCreateWindow("Solid Sphere");
+	glutCreateWindow("physics sim");
 	xRotated = yRotated = zRotated = 30.0;
 	xRotated = 43;
 	yRotated = 50;
