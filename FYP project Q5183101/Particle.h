@@ -6,21 +6,23 @@ using namespace glm;
 class Particle
 {
 
+	
+
+
+public:
 	float Pressure;
 	float Density;
-	
+
 	float Mass;
 	vec3 Position;
 	vec3 Velocity;
 	vec3 acceleration;
-
-
-public:
-
 	Particle()
 	{
 		vec3 Position = vec3(0.0f, 0.0f, 0.0f);
 		vec3 Velocity = vec3(0.0f, 0.0f, 0.0f);
+		vec3 acceleration = vec3(0.0f,0.0f,0.0f);
+
 		Density = 0.0f;
 		Mass = 0.0f;
 
@@ -31,6 +33,7 @@ public:
 	{
 		Position = nPosition;
 		Velocity = nVelocity;
+		acceleration = vec3(0.0f, 0.0f, 0.0f);
 		Density = nDensity;
 		Mass = nMass;
 	}
