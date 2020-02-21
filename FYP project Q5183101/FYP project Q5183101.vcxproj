@@ -129,12 +129,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Kernel.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="global.h" />
+    <ClInclude Include="Kernel.h" />
     <ClInclude Include="particle.h" />
+    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="vector3d.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

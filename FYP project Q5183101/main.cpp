@@ -5,12 +5,12 @@
 #include <time.h>
 #include <stdlib.h>
 #include<iostream>
-
+#include"Kernel.h"
 #include "Camera.h"
-
+#include "ParticleSystem.h"
 #include "particle.h"
 #include "global.h"
-
+#include <windows.h>
 
 using namespace std;
 
@@ -37,6 +37,41 @@ void initOpenGL()
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
 
 }
+
+void ApplyExternalForce(ParticleSystem& ParticleSystem,
+    float xforce,
+    float yforce)
+{
+    vector<Particle>& particles = ParticleSystem.GetParticles();
+
+    for (int i = 0; i < particles.size(); i++)
+    {
+        Particle& p = particles[i];
+
+        if (xforce > 0)
+        {
+            if (p.r.x < -0.07)
+                p.a.x += xforce;
+        }
+        else
+        {
+            if (p.r.x > 0.07)
+                p.a.x += xforce;
+        }
+
+        if (yforce > 0)
+        {
+            if (p.r.z > 0.25)
+                p.a.z += -yforce;
+        }
+        else
+        {
+            if (p.r.z < -0.25)
+                p.a.z += -yforce;
+        }
+    }
+}
+
 
 bool simulate = false;
 
@@ -81,7 +116,7 @@ int main(int argc, char* argv[])
 
     
     Camera camera;
-    camera.Init(3.14159f / 2.f, 0, 0.6);
+    camera.Init(3.14159f / 1.f, 0, 0.6);
 
     int mouse_lx = 0;
     int mouse_ly = 0;
@@ -90,12 +125,11 @@ int main(int argc, char* argv[])
     int mouse_ry = 0;
 
 
-   
-    // ParticleSystem;
-   // if (SCENE == DAM) {
-   //     ParticleSystem.GenerateDam();
-   // }
-   // ParticleSystem.InitGrid();
+    ParticleSystem ParticleSystem;
+    ParticleSystem.GenerateDam();
+    
+    
+    
 
     bool exforce = false;
     float xforce = 0;
@@ -148,31 +182,36 @@ int main(int argc, char* argv[])
         if (simulate) {
 
 
-          //  ParticleSystem.UpdateFluidDensity();
-          //  ParticleSystem.UpdateFluidAcceleration();
+            ParticleSystem.UpdateFluidDensity();
+
+
+
+            ParticleSystem.UpdateFluidAcceleration();
+
 
             // apply external force to particles applied by user
             if (exforce == true)
             {
                 exforce = false;
 
-             //   ApplyExternalForce(ParticleSystem, xforce, yforce);
+                ApplyExternalForce(ParticleSystem, xforce, yforce);
 
                 xforce = 0;
                 yforce = 0;
             }
 
-          //  ParticleSystem.UpdateFluidPosition();
+
+            ParticleSystem.UpdateFluidPosition();
           //strick silly sphere cole render here 
           
             if (SCENE == FAUCET) {
-          //      ParticleSystem.GenerateFaucet();
+                ParticleSystem.GenerateFaucet();
 
             }
 
 
 //
-         //   ParticleSystem.UpdateGrid();
+           // ParticleSystem.UpdateGrid();
 
             // lock at 30 fps
             {
@@ -182,11 +221,12 @@ int main(int argc, char* argv[])
                     cur = glfwGetTime();
                 }
                 last_update = cur;
+            
             }
-
-     
+            
+          
         }
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+       /* glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glColor3d(1, 0, 0);
 
         glPushMatrix();
@@ -200,6 +240,8 @@ int main(int argc, char* argv[])
         glPopMatrix();
 
         glutSwapBuffers();
+        */
+        ParticleSystem.Render();
         glfwSwapBuffers(window);
      
 
