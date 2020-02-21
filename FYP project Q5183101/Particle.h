@@ -1,58 +1,45 @@
-#pragma once
-#include<glm/glm.hpp>
-#include<gl/freeglut.h>
-using namespace glm;
+#ifndef __PARTICLE_H__
+#define __PARTICLE_H__
+
+
+#include "vector3d.h"
+#include "global.h"
 
 class Particle
 {
+public:
+    Particle()
+    {
+        m = PM;
+        g = PG;
+    }
 
-	
+    Particle(Vector3Df r_, Vector3Df v_, Vector3Df a_) :
+        r(r_),
+        v(v_),
+        a(a_)
+    {
+        m = PM;
+        g = PG;
+        p = 0;
+        d = 0;
+        V = 0;
+        c_lap = 0;
+    }
 
 
 public:
-	float Pressure;
-	float Density;
-
-	float Mass;
-	vec3 Position;
-	vec3 Velocity;
-	vec3 acceleration;
-	Particle()
-	{
-		vec3 Position = vec3(0.0f, 0.0f, 0.0f);
-		vec3 Velocity = vec3(0.0f, 0.0f, 0.0f);
-		vec3 acceleration = vec3(0.0f,0.0f,0.0f);
-
-		Density = 0.0f;
-		Mass = 0.0f;
-
-	}
-
-
-	Particle(vec3 nPosition, vec3 nVelocity, float nDensity, float nMass)
-	{
-		Position = nPosition;
-		Velocity = nVelocity;
-		acceleration = vec3(0.0f, 0.0f, 0.0f);
-		Density = nDensity;
-		Mass = nMass;
-	}
-
-	void Display()
-	{
-		glLoadIdentity();
-		glTranslatef(Position.x, Position.y, -20.0);
-		glColor3f(0.9, 0.3, 0.2);
-		glutWireSphere(0.2, 20, 20);
-		
-	
-	}
-
-
-	~Particle()
-	{
-
-	}
-	
+    float m;     // mass
+    float g;     // viscosity
+    float p;     // presure
+    float d;     // density
+    float V;     // 1/d
+    float c_lap; // laplace color field
+    Vector3Df r;  // position
+    Vector3Df v;  // velocity
+    Vector3Df a;  // acceleration
+    Vector3Df n;  // normal
+    int grid_index[3];
 };
 
+#endif
