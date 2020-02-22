@@ -26,34 +26,34 @@ C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSyste
 C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(109,11): warning C4244:             T=float
 C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(109,11): warning C4244:         ]
 C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(115,11): warning C4244:  'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(316,40): warning C4305:  '=': truncation from 'double' to 'T'
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(316,40): warning C4305:         with
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(316,40): warning C4305:         [
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(316,40): warning C4305:             T=float
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(316,40): warning C4305:         ]
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(322,41): warning C4305:  '=': truncation from 'double' to 'T'
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(322,41): warning C4305:         with
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(322,41): warning C4305:         [
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(322,41): warning C4305:             T=float
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(322,41): warning C4305:         ]
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(329,40): warning C4305:  '=': truncation from 'double' to 'T'
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(329,40): warning C4305:         with
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(329,40): warning C4305:         [
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(329,40): warning C4305:             T=float
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(329,40): warning C4305:         ]
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(335,41): warning C4305:  '=': truncation from 'double' to 'T'
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(335,41): warning C4305:         with
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(335,41): warning C4305:         [
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(335,41): warning C4305:             T=float
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(335,41): warning C4305:         ]
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(342,41): warning C4305:  '=': truncation from 'double' to 'T'
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(342,41): warning C4305:         with
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(342,41): warning C4305:         [
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(342,41): warning C4305:             T=float
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(342,41): warning C4305:         ]
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(348,40): warning C4305:  '=': truncation from 'double' to 'T'
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(348,40): warning C4305:         with
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(348,40): warning C4305:         [
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(348,40): warning C4305:             T=float
-C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(348,40): warning C4305:         ]
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(318,40): warning C4305:  '=': truncation from 'double' to 'T'
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(318,40): warning C4305:         with
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(318,40): warning C4305:         [
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(318,40): warning C4305:             T=float
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(318,40): warning C4305:         ]
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(324,41): warning C4305:  '=': truncation from 'double' to 'T'
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(324,41): warning C4305:         with
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(324,41): warning C4305:         [
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(324,41): warning C4305:             T=float
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(324,41): warning C4305:         ]
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(331,40): warning C4305:  '=': truncation from 'double' to 'T'
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(331,40): warning C4305:         with
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(331,40): warning C4305:         [
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(331,40): warning C4305:             T=float
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(331,40): warning C4305:         ]
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(337,41): warning C4305:  '=': truncation from 'double' to 'T'
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(337,41): warning C4305:         with
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(337,41): warning C4305:         [
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(337,41): warning C4305:             T=float
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(337,41): warning C4305:         ]
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(344,41): warning C4305:  '=': truncation from 'double' to 'T'
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(344,41): warning C4305:         with
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(344,41): warning C4305:         [
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(344,41): warning C4305:             T=float
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(344,41): warning C4305:         ]
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(350,40): warning C4305:  '=': truncation from 'double' to 'T'
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(350,40): warning C4305:         with
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(350,40): warning C4305:         [
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(350,40): warning C4305:             T=float
+C:\Users\q5183101\Source\FYP-project-Q5183101\FYP project Q5183101\ParticleSystem.cpp(350,40): warning C4305:         ]
   FYP project Q5183101.vcxproj -> C:\Users\q5183101\Source\FYP-project-Q5183101\x64\Debug\FYP project Q5183101.exe

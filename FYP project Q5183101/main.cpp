@@ -155,6 +155,7 @@ int main(int argc, char* argv[])
             mouse_lx = (int)mx;
             mouse_ly = (int)my;
 
+
             camera.UpdateAngles(dy / 100.0f, dx / 100.0f);
         }
 
@@ -168,6 +169,7 @@ int main(int argc, char* argv[])
             mouse_ry = (int)my;
 
             exforce = true;
+			std::cout << "hit" << std::endl;
             xforce = dx * 3.0f;
             yforce = dy * 3.0f;
         }
@@ -208,7 +210,7 @@ int main(int argc, char* argv[])
 
 
 //
-           // ParticleSystem.UpdateGrid(); // fix update grid
+            ParticleSystem.UpdateGrid(); // fix update grid
 
             // lock at 30 fps
             {
