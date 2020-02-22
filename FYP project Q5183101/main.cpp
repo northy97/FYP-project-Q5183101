@@ -204,14 +204,11 @@ int main(int argc, char* argv[])
             ParticleSystem.UpdateFluidPosition();
           //strick silly sphere cole render here 
           
-            if (SCENE == FAUCET) {
-                ParticleSystem.GenerateFaucet();
-
-            }
+           
 
 
 //
-           // ParticleSystem.UpdateGrid();
+           // ParticleSystem.UpdateGrid(); // fix update grid
 
             // lock at 30 fps
             {

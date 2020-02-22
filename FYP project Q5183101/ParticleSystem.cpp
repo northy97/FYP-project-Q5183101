@@ -21,32 +21,19 @@ void ParticleSystem::InitParticles()
 
 void ParticleSystem::GenerateDam() {
 
-    for (double rx = -BOX_X / 2; rx < BOX_X / 4; rx += H / 2.0) {
-        for (double ry = -BOX_Y / 2; ry < BOX_Y / 6; ry += H / 2.0) {
-            for (double rz = -BOX_Z / 2; rz < BOX_Z / 4; rz += H / 2.0) {
-                Vector3Df r(rx, ry, rz);
-                particles_.push_back(Particle(r, Vector3Df(0, 0, 0), Vector3Df(0, 0, 0)));
-                std::cout << particles_.size() << std::endl;
-            }
-        }
-    }
+	for (double rx = -BOX_X / 2; rx < BOX_X / 4; rx += H / 2.0) {
+		for (double ry = -BOX_Y / 2; ry < BOX_Y / 6; ry += H / 2.0) {
+			for (double rz = -BOX_Z / 2; rz < BOX_Z / 4; rz += H / 2.0) {
+				Vector3Df r(rx, ry, rz);
+				particles_.push_back(Particle(r, Vector3Df(0, 0, 0), Vector3Df(0, 0, 0)));
+				
+			}
+		}
+		
+	}
 }
 
-void ParticleSystem::GenerateFaucet() {
-    if (particles_.size() < NPARTICLES) {
-        Vector3Df initialVelocity(0.0, 0, 0);
 
-        particles_.push_back(Particle(Vector3Df(BOX_X / 2.0 - H / 2.0, BOX_Y + H * 0.6, BOX_Z), initialVelocity, Vector3Df(0, 0, 0)));
-        particles_.push_back(Particle(Vector3Df(BOX_X / 2.0 - H / 2.0, BOX_Y, BOX_Z), initialVelocity, Vector3Df(0, 0, 0)));
-        particles_.push_back(Particle(Vector3Df(BOX_X / 2.0 + H / 2.0, BOX_Y - H * 0.6, BOX_Z), initialVelocity, Vector3Df(0, 0, 0)));
-
-        particles_.push_back(Particle(Vector3Df(BOX_X / 2.0 - H / 2.0, BOX_Y + H * 0.3, BOX_Z + H * 0.6), initialVelocity, Vector3Df(0, 0, 0)));
-        particles_.push_back(Particle(Vector3Df(BOX_X / 2.0 - H / 2.0, BOX_Y - H * 0.3, BOX_Z - H * 0.6), initialVelocity, Vector3Df(0, 0, 0)));
-        InitGrid();
-    }
-
-
-}
 
 void ParticleSystem::Render() const
 {
@@ -235,7 +222,7 @@ void ParticleSystem::UpdateFluidDensity()
         }
 
         p.d *= PM;
-        p.V = 1.f / p.d;
+        p.V = 1.f /  0.0118f;
         p.p = GAS_CONST * (p.d - PREST_D);
 
         if (p.p < 0)

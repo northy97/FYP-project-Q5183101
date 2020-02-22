@@ -3,8 +3,7 @@
 
 // interaction
 #define DAM 0
-#define FAUCET 1
-#define DROP 2
+
 
 
 // constant
