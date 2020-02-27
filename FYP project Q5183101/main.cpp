@@ -14,7 +14,8 @@
 
 using namespace std;
 
-
+// imgui graphical opengl interface 
+// possible graphics interface https://github.com/ocornut/imgui/releases
 void initOpenGL()
 {
    
@@ -73,7 +74,7 @@ void ApplyExternalForce(ParticleSystem& ParticleSystem,
 }
 
 
-bool simulate = false;
+bool simulate = true;
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -93,9 +94,9 @@ int main(int argc, char* argv[])
     glutInitWindowPosition(10, 10);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 
-    glutCreateWindow("Programming Techniques - 3D Spheres");
+    glutCreateWindow("3d");
     glClearColor(1, 1, 1, 1);
-	static int SCENE = DAM;
+	
 
 	if (!glfwInit())
 	{
@@ -126,7 +127,7 @@ int main(int argc, char* argv[])
 
 
     ParticleSystem ParticleSystem;
-    ParticleSystem.GenerateDam();
+   
     
     
     

@@ -9,12 +9,13 @@ using namespace std;
 ParticleSystem::ParticleSystem()
 {
     InitParticles();
+	InitGrid();
 }
 
 // dam
 void ParticleSystem::InitParticles()
 {
-
+	GenerateDam();
 
 
 }
@@ -22,10 +23,11 @@ void ParticleSystem::InitParticles()
 void ParticleSystem::GenerateDam() {
 
 	for (double rx = -BOX_X / 2; rx < BOX_X / 4; rx += H / 2.0) {
-		for (double ry = -BOX_Y / 2; ry < BOX_Y / 6; ry += H / 2.0) {
+		for (double ry = -BOX_Y / 2; ry < BOX_Y / 4; ry += H / 2.0) {
 			for (double rz = -BOX_Z / 2; rz < BOX_Z / 4; rz += H / 2.0) {
 				Vector3Df r(rx, ry, rz);
 				particles_.push_back(Particle(r, Vector3Df(0, 0, 0), Vector3Df(0, 0, 0)));
+				return;
 				
 			}
 		}
@@ -80,6 +82,7 @@ void ParticleSystem::Render() const
 
 void ParticleSystem::InitGrid()
 {
+
     for (int i = 0; i < particles_.size(); i++)
     {
         Particle& p = particles_[i];
@@ -91,6 +94,7 @@ void ParticleSystem::InitGrid()
         p.grid_index[2] = index.y;
 
         grid_[index.z][index.x][index.y].insert(i);
+
     }
 }
 
@@ -142,16 +146,16 @@ void ParticleSystem::UpdateGrid()
             gx == x &&
             gy == y)
             continue;
+		
+		grid_[gz][gx][gy].erase(i);
+		
+		
 
+        p.grid_index[0] = z;
+        p.grid_index[1] = x;
+        p.grid_index[2] = y;
 
-		//grid_[gz][gx][gy].erase(i); fix update grid
-		//
-
-  //      p.grid_index[0] = z;
-  //      p.grid_index[1] = x;
-  //      p.grid_index[2] = y;
-
-  //      grid_[z][x][y].insert(i);
+       // grid_[z][x][y].insert(i);
     }
 }
 
@@ -239,6 +243,7 @@ void ParticleSystem::UpdateFluidDensity()
 
 void ParticleSystem::UpdateFluidAcceleration()
 {
+
     Vector3Df fpressure;
     Vector3Df fviscosity;
     Vector3Df dr;
@@ -246,6 +251,7 @@ void ParticleSystem::UpdateFluidAcceleration()
     vector<int> neighbors;
     for (int i = 0; i < particles_.size(); i++)
     {
+
         fpressure.Clear();
         fviscosity.Clear();
 
