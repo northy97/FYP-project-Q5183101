@@ -143,6 +143,7 @@ void ParticleSystem::UpdateGrid()
             gy == y)
             continue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         grid_[gz][gx][gy].erase(i);
 =======
@@ -152,6 +153,10 @@ void ParticleSystem::UpdateGrid()
 <<<<<<< HEAD
         grid_[z][x][y].insert(i);
 =======
+=======
+
+
+>>>>>>> parent of 41ca68f... fixed bug need to fix speed at start
 		//grid_[gz][gx][gy].erase(i); fix update grid
 		//
 
@@ -160,6 +165,9 @@ void ParticleSystem::UpdateGrid()
   //      p.grid_index[2] = y;
 
   //      grid_[z][x][y].insert(i);
+<<<<<<< HEAD
+>>>>>>> parent of 41ca68f... fixed bug need to fix speed at start
+=======
 >>>>>>> parent of 41ca68f... fixed bug need to fix speed at start
     }
 }
