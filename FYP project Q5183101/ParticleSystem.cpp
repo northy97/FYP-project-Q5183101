@@ -155,7 +155,7 @@ void ParticleSystem::UpdateGrid()
         p.grid_index[1] = x;
         p.grid_index[2] = y;
 
-       // grid_[z][x][y].insert(i);
+        //grid_[z][x][y].insert(i); // fix adding neighbours and check through fluid solver
     }
 }
 
