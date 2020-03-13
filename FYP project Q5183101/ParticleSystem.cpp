@@ -143,15 +143,13 @@ void ParticleSystem::UpdateGrid()
             gy == y)
             continue;
 
+        grid_[gz][gx][gy].erase(i);
 
-		//grid_[gz][gx][gy].erase(i); fix update grid
-		//
+        p.grid_index[0] = z;
+        p.grid_index[1] = x;
+        p.grid_index[2] = y;
 
-  //      p.grid_index[0] = z;
-  //      p.grid_index[1] = x;
-  //      p.grid_index[2] = y;
-
-  //      grid_[z][x][y].insert(i);
+        grid_[z][x][y].insert(i);
     }
 }
 
@@ -368,7 +366,7 @@ void ParticleSystem::UpdateFluidPosition()
         particles_[i].r += particles_[i].v * TIMESTEP;
        
 
-     
+        std::cout << particles_[0].r.y << std::endl;
     }
 
 
