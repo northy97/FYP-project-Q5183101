@@ -4,7 +4,7 @@
 #include "kernel.h"
 #include "particle.h"
 #include "vector3d.h"
-
+#include<set>
 #include <vector>
 #include <set>
 
@@ -12,38 +12,38 @@
 class ParticleSystem
 {
 public:
-    ParticleSystem();
+	ParticleSystem();
 
 public:
-    void InitGrid();
-    void UpdateGrid();
-
-    
-    void GenerateDam();
-
-    void UpdateFluidDensity();
-    void UpdateFluidAcceleration();
-    void UpdateFluidPosition();
+	void InitGrid();
+	void UpdateGrid();
 
 
-    void Render() const;
+	void GenerateDam();
 
-    std::vector<Particle>& GetParticles() { return particles_; };
+	void UpdateFluidDensity();
+	void UpdateFluidAcceleration();
+	void UpdateFluidPosition();
 
-private:
-    void InitParticles();
 
-    Vector3Di GetGridIndex(const Particle& p) const;
+	void Render() const;
 
-    void CollisionResolve();
-
-    int GetNeighborParticles(int particle_index, /*out*/ std::vector<int>& neighbors);
+	std::vector<Particle>& GetParticles() { return particles_; };
 
 private:
-    std::vector<Particle> particles_;
+	void InitParticles();
 
-    // index order: z, x, y
-    std::set<int> grid_[(int)(BOX_Z / H)][(int)(BOX_X / H)][(int)(BOX_Y / H)];
+	Vector3Di GetGridIndex(const Particle& p) const;
+
+	void CollisionResolve();
+
+	int GetNeighborParticles(int particle_index, /*out*/ std::vector<int>& neighbors);
+
+private:
+	std::vector<Particle> particles_;
+
+	// index order: z, x, y
+	std::set<int> grid_[(int)(BOX_Z / H)][(int)(BOX_X / H)][(int)(BOX_Y / H)];
 
 };
 
@@ -57,4 +57,3 @@ private:
 
 
 #endif
-
