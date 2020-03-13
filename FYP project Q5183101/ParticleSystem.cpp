@@ -142,14 +142,25 @@ void ParticleSystem::UpdateGrid()
             gx == x &&
             gy == y)
             continue;
+<<<<<<< HEAD
 
         grid_[gz][gx][gy].erase(i);
+=======
+>>>>>>> parent of 41ca68f... fixed bug need to fix speed at start
 
-        p.grid_index[0] = z;
-        p.grid_index[1] = x;
-        p.grid_index[2] = y;
 
+<<<<<<< HEAD
         grid_[z][x][y].insert(i);
+=======
+		//grid_[gz][gx][gy].erase(i); fix update grid
+		//
+
+  //      p.grid_index[0] = z;
+  //      p.grid_index[1] = x;
+  //      p.grid_index[2] = y;
+
+  //      grid_[z][x][y].insert(i);
+>>>>>>> parent of 41ca68f... fixed bug need to fix speed at start
     }
 }
 
