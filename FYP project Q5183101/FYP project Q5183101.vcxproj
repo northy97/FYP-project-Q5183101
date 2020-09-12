@@ -18,6 +18,16 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\SPH\fluid.cpp" />
+    <ClCompile Include="..\..\SPH\main.cpp" />
+    <ClCompile Include="..\..\SPH\particle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\SPH\fluid.hpp" />
+    <ClInclude Include="..\..\SPH\particle.hpp" />
+    <ClInclude Include="..\..\SPH\utility.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{B56E9C58-36B9-479B-B8AA-2BA3D7DCEA0A}</ProjectGuid>
@@ -127,20 +137,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Kernel.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="ParticleSystem.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="global.h" />
-    <ClInclude Include="Kernel.h" />
-    <ClInclude Include="particle.h" />
-    <ClInclude Include="ParticleSystem.h" />
-    <ClInclude Include="vector3d.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
