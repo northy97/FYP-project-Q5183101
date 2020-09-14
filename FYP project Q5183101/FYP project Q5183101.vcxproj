@@ -19,14 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\SPH\fluid.cpp" />
-    <ClCompile Include="..\..\SPH\main.cpp" />
-    <ClCompile Include="..\..\SPH\particle.cpp" />
+    <ClCompile Include="fluid.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="particle.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\SPH\fluid.hpp" />
-    <ClInclude Include="..\..\SPH\particle.hpp" />
-    <ClInclude Include="..\..\SPH\utility.h" />
+    <ClInclude Include="fluid.hpp" />
+    <ClInclude Include="particle.hpp" />
+    <ClInclude Include="utility.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

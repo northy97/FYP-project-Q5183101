@@ -15,24 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\SPH\fluid.cpp">
+    <ClCompile Include="fluid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\SPH\main.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\SPH\particle.cpp">
+    <ClCompile Include="particle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\SPH\fluid.hpp">
+    <ClInclude Include="fluid.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\SPH\particle.hpp">
+    <ClInclude Include="particle.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\SPH\utility.h">
+    <ClInclude Include="utility.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
