@@ -5,9 +5,9 @@ const float particleDiameter = powf(fluidVolume, 1.0f / 3.0f) / 10;
 const float particleRadius   = particleDiameter / 2;
 
 Fluid::Fluid( void ) {
-    for (float x = -particleRadius * 3; x <= particleRadius *3; x += particleDiameter) {
-        for (float y = -particleRadius * 3; y <= particleRadius * 3; y += particleDiameter) {
-            for (float z = -particleRadius * 3; z <= particleRadius * 3; z += particleDiameter)
+    for (float x = -particleRadius * 5; x <= particleRadius *5; x += particleDiameter) {
+        for (float y = -particleRadius * 5; y <= particleRadius * 5; y += particleDiameter) {
+            for (float z = -particleRadius * 4; z <= particleRadius * 4; z += particleDiameter)
                 mParticles.push_back(Particle(MASS, Vector3f(x, y, z)));
         }
     }

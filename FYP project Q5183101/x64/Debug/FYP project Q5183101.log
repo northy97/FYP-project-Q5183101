@@ -1,1 +1,9 @@
-﻿  FYP project Q5183101.vcxproj -> C:\Users\Ashley Brocklesby\Desktop\FYP-project-Q5183101\x64\Debug\FYP project Q5183101.exe
+﻿  fluid.cpp
+C:\Users\Ashley Brocklesby\Desktop\FYP-project-Q5183101\FYP project Q5183101\fluid.cpp(17,82): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ashley Brocklesby\Desktop\FYP-project-Q5183101\FYP project Q5183101\fluid.cpp(272,64): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\Ashley Brocklesby\Desktop\FYP-project-Q5183101\FYP project Q5183101\fluid.cpp(280,36): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Ashley Brocklesby\Desktop\FYP-project-Q5183101\FYP project Q5183101\fluid.cpp(288,113): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\Ashley Brocklesby\Desktop\FYP-project-Q5183101\FYP project Q5183101\fluid.cpp(296,63): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Ashley Brocklesby\Desktop\FYP-project-Q5183101\FYP project Q5183101\fluid.cpp(298,47): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Ashley Brocklesby\Desktop\FYP-project-Q5183101\FYP project Q5183101\fluid.cpp(306,58): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  FYP project Q5183101.vcxproj -> C:\Users\Ashley Brocklesby\Desktop\FYP-project-Q5183101\x64\Debug\FYP project Q5183101.exe
