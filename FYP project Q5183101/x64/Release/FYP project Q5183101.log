@@ -1,0 +1,16 @@
+﻿  fluid.cpp
+C:\Users\Ashley Brocklesby\Desktop\final year project folder q5183101\FYP project final version\FYP project Q5183101\fluid.cpp(16,81): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ashley Brocklesby\Desktop\final year project folder q5183101\FYP project final version\FYP project Q5183101\fluid.cpp(255,36): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Ashley Brocklesby\Desktop\final year project folder q5183101\FYP project final version\FYP project Q5183101\fluid.cpp(263,113): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\Ashley Brocklesby\Desktop\final year project folder q5183101\FYP project final version\FYP project Q5183101\fluid.cpp(271,63): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Ashley Brocklesby\Desktop\final year project folder q5183101\FYP project final version\FYP project Q5183101\fluid.cpp(273,47): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Ashley Brocklesby\Desktop\final year project folder q5183101\FYP project final version\FYP project Q5183101\fluid.cpp(282,58): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\Ashley Brocklesby\Desktop\final year project folder q5183101\FYP project final version\FYP project Q5183101\fluid.cpp(290,64): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  main.cpp
+C:\Users\Ashley Brocklesby\Desktop\final year project folder q5183101\FYP project final version\FYP project Q5183101\main.cpp(10,30): warning C4305: 'argument': truncation from 'double' to 'float'
+  Generating code
+  0 of 110 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  FYP project Q5183101.vcxproj -> C:\Users\Ashley Brocklesby\Desktop\final year project folder q5183101\FYP project final version\x64\Release\FYP project Q5183101.exe

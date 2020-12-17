@@ -1,0 +1,6 @@
+﻿  fluid.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\gl\glut.h(17,10): fatal error C1083: Cannot open include file: 'freeglut_std.h': No such file or directory
+  main.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\gl\glut.h(17,10): fatal error C1083: Cannot open include file: 'freeglut_std.h': No such file or directory
+  particle.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\gl\glut.h(17,10): fatal error C1083: Cannot open include file: 'freeglut_std.h': No such file or directory

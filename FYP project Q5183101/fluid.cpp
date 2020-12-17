@@ -1,286 +1,261 @@
 #include "fluid.hpp"
 
-const float fluidVolume      = 1000 * MASS / REST_DENSITY;
-const float particleDiameter = powf(fluidVolume, 1.0f / 3.0f) / 10;
-const float particleRadius   = particleDiameter / 2;
 
-Fluid::Fluid( void ) {
-    for (float x = -particleRadius * 5; x <= particleRadius *5; x += particleDiameter) {
-        for (float y = -particleRadius * 5; y <= particleRadius * 5; y += particleDiameter) {
-            for (float z = -particleRadius * 4; z <= particleRadius * 4; z += particleDiameter)
-                mParticles.push_back(Particle(MASS, Vector3f(x, y, z)));
+
+Fluid::Fluid( void ) {// initial amount of particles and position 
+    for (float x = -particleRadius * 9; x <= particleRadius *9; x += particleDiameter) {
+        for (float y = -particleRadius * 9; y <= particleRadius * 9; y += particleDiameter) {
+            for (float z = -particleRadius * 9; z <= particleRadius * 9; z += particleDiameter)
+
+                m_Particles.push_back(Particle(mass, Vector3f(x, y, z)));
         }
     }
 }
 
-void Fluid::draw( void ) {
-    float sphereRadius = powf((3 * MASS) / (4 * M_PI * REST_DENSITY), 1.0f / 3.0f);
-    for (int i = 0; i < mParticles.size(); i++) {
+void Fluid::drawScene( void ) {
+    float sphereRadius = powf((3 * mass) / (4 * M_PI * restDensity), 1.0f / 3.0f);
+    for (int i = 0; i < m_Particles.size(); i++) {
         glPushMatrix();
-        glTranslatef(mParticles[i].mPosition.x, mParticles[i].mPosition.y, mParticles[i].mPosition.z);
-        glutSolidSphere(sphereRadius, 30, 30);
+        glTranslatef(m_Particles[i].mPos.x, m_Particles[i].mPos.y, m_Particles[i].mPos.z);
+        glutSolidSphere(sphereRadius, 30, 30);// render each particle of fluid
         glPopMatrix();
     }
 
     glDisable(GL_LIGHTING);
 
-    glColor3f(1.0f, 1.0f, 1.0f);
-
-    // Draw bottom surface edges of the box
-    glBegin(GL_LINE_LOOP);
-    glVertex3f(-BOX_SIZE / 2, -BOX_SIZE / 2, -BOX_SIZE / 2);
-    glVertex3f( BOX_SIZE / 2, -BOX_SIZE / 2, -BOX_SIZE / 2);
-    glVertex3f( BOX_SIZE / 2, -BOX_SIZE / 2,  BOX_SIZE / 2);
-    glVertex3f(-BOX_SIZE / 2, -BOX_SIZE / 2,  BOX_SIZE / 2);
     
-    glEnd();
 
-    // Draw top surface edges of the box
-    //glBegin(GL_LINE_LOOP);
-    //glVertex3f(-BOX_SIZE / 2,  BOX_SIZE / 2, -BOX_SIZE / 2);
-    //glVertex3f( BOX_SIZE / 2,  BOX_SIZE / 2, -BOX_SIZE / 2);
-    //glvertex3f( box_size / 2,  box_size / 2,  box_size / 2);
-    //glVertex3f(-BOX_SIZE / 2,  BOX_SIZE / 2,  BOX_SIZE / 2);
-    //glEnd();
-
-    // Draw left surface edges of the box
+    // Draw bottom surface edges of boundary
+    glBegin(GL_LINE_LOOP);
+    glVertex3f(-containerSize / 2, -containerSize / 2, -containerSize / 2);
+    glVertex3f(containerSize / 2, -containerSize / 2, -containerSize / 2);
+    glVertex3f(containerSize / 2, -containerSize / 2, containerSize / 2);
+    glVertex3f(-containerSize / 2, -containerSize / 2, containerSize / 2);
     
-    glBegin(GL_LINE_LOOP);
-
-    glVertex3f(-BOX_SIZE / 2,  BOX_SIZE / 2, -BOX_SIZE / 2);
-    glVertex3f(-BOX_SIZE / 2,  BOX_SIZE / 2,  BOX_SIZE / 2);
-    glVertex3f(-BOX_SIZE / 2, -BOX_SIZE / 2,  BOX_SIZE / 2);
-    glVertex3f(-BOX_SIZE / 2, -BOX_SIZE / 2, -BOX_SIZE / 2);
-   
-   
-    glEnd();
- 
-
-    // Draw right surface edges of the box
-    glBegin(GL_LINE_LOOP);
-    glVertex3f( BOX_SIZE / 2,  BOX_SIZE / 2, -BOX_SIZE / 2);
-    glVertex3f( BOX_SIZE / 2,  BOX_SIZE / 2,  BOX_SIZE / 2);
-    glVertex3f( BOX_SIZE / 2, -BOX_SIZE / 2,  BOX_SIZE / 2);
-    glVertex3f( BOX_SIZE / 2, -BOX_SIZE / 2, -BOX_SIZE / 2);
-   
     glEnd();
 
     glColor3f(1.0f, 0.0f, 0.0f);
 
-    //// Draw x-axis
-    //glBegin(GL_LINES);
-    //glVertex3f(-BOX_SIZE, 0.0f, 0.0f);
-    //glVertex3f( BOX_SIZE, 0.0f, 0.0f);
-    //glEnd();
-
-    //// Draw y-axis
-    //glBegin(GL_LINes);
-    //glvertex3f(0.0f, -box_size, 0.0f);
-    //glvertex3f(0.0f,  box_size, 0.0f);
-    //glEnd();
-
-    //// Draw z-axis
-    //glBegin(GL_LINES);
-    //glVertex3f(0.0f, 0.0f, -BOX_SIZE);
-    //glVertex3f(0.0f, 0.0f,  BOX_SIZE);
-    //glEnd();
-
+ 
     glEnable(GL_LIGHTING);
 
 }
 
-void Fluid::simulate( void ) {
-    // Compute density and pressure
-    for (int i = 0; i < mParticles.size(); i++) {
-        mParticles[i].mDensity  = calcDensity(mParticles[i].mPosition);
-        mParticles[i].mPressure = calcPressure(mParticles[i].mDensity);
+void Fluid::runSimulation( void ) {
+    // Calculate pressure and density 
+
+    
+    for (int i = 0; i < m_Particles.size(); i++) {
+        m_Particles[i].mDensity  = calcDensity(m_Particles[i].mPos);
+        m_Particles[i].mPressure = calcPressure(m_Particles[i].mDensity);
     }
 
     // Compute internal forces
-    for (int i = 0; i < mParticles.size(); i++) {
-        mParticles[i].mPressureForce  = calcPressureForce(i, mParticles[i].mDensity, mParticles[i].mPressure, mParticles[i].mPosition);
-        mParticles[i].mViscosityForce = calcViscosityForce(i, mParticles[i].mVelocity, mParticles[i].mPosition);
+    for (int i = 0; i < m_Particles.size(); i++) {
+        m_Particles[i].mPressureForce  = calcPressureForce(i, m_Particles[i].mDensity, m_Particles[i].mPressure, m_Particles[i].mPos);
+ 
+        m_Particles[i].mViscoForce = calcViscosityForce(i, m_Particles[i].mVeloc, m_Particles[i].mPos);
     }
 
     // Compute external forces
-    for (int i = 0; i < mParticles.size(); i++) {
-        mParticles[i].mGravitationalForce = calcGravitationalForce(mParticles[i].mDensity);
-        mParticles[i].mSurfaceNormal      = calcSurfaceNormal(mParticles[i].mPosition);
-        if (mParticles[i].mSurfaceNormal.length() >= THRESHOLD)
-            mParticles[i].mSurfaceTensionForce = calcSurfaceTensionForce(mParticles[i].mSurfaceNormal, mParticles[i].mPosition);
+    for (int i = 0; i < m_Particles.size(); i++) {
+        m_Particles[i].mGravitationalForce = calcGravitationalForce(m_Particles[i].mDensity);
+        m_Particles[i].mSurfaceNormal      = calcSurfaceNormal(m_Particles[i].mPos);
+        if (m_Particles[i].mSurfaceNormal.length() >= thresholdBoundary)
+            m_Particles[i].mSurfaceTensionForce = calcSurfaceTensionForce(m_Particles[i].mSurfaceNormal, m_Particles[i].mPos);
         else
-            mParticles[i].mSurfaceTensionForce = Vector3f(0.0f, 0.0f, 0.0f);
+            m_Particles[i].mSurfaceTensionForce = Vector3f(0.0f, 0.0f, 0.0f);
     }
 
     // Time integration and collision handling
     static float time = 0.0f;
-    time += TIME_STEP;
+    time += TimeStep;
     Vector3f totalForce;
-    for (int i = 0; i < mParticles.size(); i++) {
-        //totalForce = mParticles[i].mPressureForce + mParticles[i].mViscosityForce + mParticles[i].mSurfaceTensionForce;
-        totalForce = mParticles[i].mPressureForce + mParticles[i].mViscosityForce + mParticles[i].mGravitationalForce + mParticles[i].mSurfaceTensionForce;
-        employEulerIntegrator(mParticles[i], totalForce);
+    for (int i = 0; i < m_Particles.size(); i++) {
+    
+        totalForce = m_Particles[i].mPressureForce + m_Particles[i].mViscoForce + m_Particles[i].mGravitationalForce + m_Particles[i].mSurfaceTensionForce;
+        employEulerIntegrator(m_Particles[i], totalForce);
 
         Vector3f contactPoint;
         Vector3f unitSurfaceNormal;
-        if (detectCollision(mParticles[i], contactPoint, unitSurfaceNormal)) {
-            updateVelocity(mParticles[i].mVelocity, unitSurfaceNormal, (mParticles[i].mPosition - contactPoint).length());
-            mParticles[i].mPosition = contactPoint;
+        if (collisionCheck(m_Particles[i], contactPoint, unitSurfaceNormal)) {
+            velocityUpdate(m_Particles[i].mVeloc, unitSurfaceNormal, (m_Particles[i].mPos - contactPoint).length());
+            m_Particles[i].mPos = contactPoint;
         }
     }
 }
 
-float Fluid::calcDensity( Vector3f position ) {
-    float sum = 0.0f;
-    for (int j = 0; j < mParticles.size(); j++)
-        sum += mParticles[j].mMass * useDefaultKernel(position - mParticles[j].mPosition, SUPPORT_RADIUS);
-    return sum;
-}
 
 float Fluid::calcPressure( float density ) {
-    return GAS_STIFFNESS * (density - REST_DENSITY);
+    return gasStiffness * (density - restDensity);
+}
+
+float Fluid::calcDensity(Vector3f position) {
+    float sum = 0.0f;
+    for (int j = 0; j < m_Particles.size(); j++)
+        sum += m_Particles[j].mMass * useKernal(position - m_Particles[j].mPos, SUPPORT_RADIUS);
+    return sum;
 }
 
 Vector3f Fluid::calcPressureForce( int indexOfCurrentParticle, float density, float pressure, Vector3f position ) {
     Vector3f sum(0.0f, 0.0f, 0.0f);
-    for (int j = 0; j < mParticles.size(); j++) {
+    for (int j = 0; j < m_Particles.size(); j++) {
         if (j == indexOfCurrentParticle)
             continue;
-        sum += usePressureKernel_gradient(position - mParticles[j].mPosition, SUPPORT_RADIUS) * (pressure / (density * density) + mParticles[j].mPressure / (mParticles[j].mDensity * mParticles[j].mDensity)) * mParticles[j].mMass;
+        sum += pressureKernelGradiant(position - m_Particles[j].mPos, SUPPORT_RADIUS) * (pressure / (density * density) + m_Particles[j].mPressure / 
+            (m_Particles[j].mDensity * m_Particles[j].mDensity)) * m_Particles[j].mMass;
     }
     return -(sum * density);
 }
 
-Vector3f Fluid::calcViscosityForce( int indexOfCurrentParticle, Vector3f velocity, Vector3f position ) {
+
+Vector3f Fluid::calcGravitationalForce( float density )
+{
+    return gravitationalConstant * density;
+}
+
+Vector3f Fluid::calcSurfaceNormal( Vector3f position ) 
+{
     Vector3f sum(0.0f, 0.0f, 0.0f);
-    for (int j = 0; j < mParticles.size(); j++) {
-        if (j == indexOfCurrentParticle)
-            continue;
-        sum += (mParticles[j].mVelocity - velocity) * (mParticles[j].mMass / mParticles[j].mDensity) * useViscosityKernel_laplacian(position - mParticles[j].mPosition, SUPPORT_RADIUS);
+    for (int j = 0; j < m_Particles.size(); j++)
+    {
+        sum += DefaultKernalGradiant(position - m_Particles[j].mPos, SUPPORT_RADIUS) * (m_Particles[j].mMass / m_Particles[j].mDensity);
     }
-    return sum * VISCOSITY;
-}
-
-Vector3f Fluid::calcGravitationalForce( float density ) {
-    return GRAVITATIONAL_ACCELERATION * density;
-}
-
-Vector3f Fluid::calcSurfaceNormal( Vector3f position ) {
-    Vector3f sum(0.0f, 0.0f, 0.0f);
-    for (int j = 0; j < mParticles.size(); j++)
-        sum += useDefaultKernel_gradient(position - mParticles[j].mPosition, SUPPORT_RADIUS) * (mParticles[j].mMass / mParticles[j].mDensity);
+        
     return sum;
 }
 
 Vector3f Fluid::calcSurfaceTensionForce( Vector3f surfaceNormal, Vector3f position ) {
     float sum = 0.0f;
-    for (int j = 0; j < mParticles.size(); j++)
-        sum += (mParticles[j].mMass / mParticles[j].mDensity) * useDefaultKernel_laplacian(position - mParticles[j].mPosition, SUPPORT_RADIUS);
-    return -(surfaceNormal.normalize() * SURFACE_TENSION * sum);
+    for (int j = 0; j < m_Particles.size(); j++)
+        sum += (m_Particles[j].mMass / m_Particles[j].mDensity) * defaultKernelLap(position - m_Particles[j].mPos, SUPPORT_RADIUS);
+    return -(surfaceNormal.normalize() * surfaceTension * sum);
 }
 
+Vector3f Fluid::calcViscosityForce(int indexOfCurrentParticle, Vector3f velocity, Vector3f position) {
+    Vector3f sum(0.0f, 0.0f, 0.0f);
+    for (int j = 0; j < m_Particles.size(); j++) {
+        if (j == indexOfCurrentParticle)
+            continue;
+        sum += (m_Particles[j].mVeloc - velocity) * (m_Particles[j].mMass / m_Particles[j].mDensity) * viscosKernalLap(position - m_Particles[j].mPos, SUPPORT_RADIUS);
+    }
+    return sum * viscosity;
+}
+
+// used to update the position and velocity by the timestep 
 void Fluid::employEulerIntegrator( Particle &particle, Vector3f totalForce ) {
-    particle.mAcceleration = totalForce / particle.mDensity;
-    particle.mVelocity     = particle.mVelocity + particle.mAcceleration * TIME_STEP;
-    particle.mPosition     = particle.mPosition + particle.mVelocity * TIME_STEP;
+    particle.mAccel = totalForce / particle.mDensity;
+    particle.mVeloc = particle.mVeloc + particle.mAccel * TimeStep;
+    particle.mPos = particle.mPos + particle.mVeloc * TimeStep;
 }
 
-bool Fluid::detectCollision( Particle particle, Vector3f &contactPoint, Vector3f &unitSurfaceNormal ) {
-    if (abs(particle.mPosition.x) <= BOX_SIZE / 2 && abs(particle.mPosition.y) <= BOX_SIZE / 2 && abs(particle.mPosition.z) <= BOX_SIZE / 2)
+
+// run collision check
+bool Fluid::collisionCheck( Particle particle, Vector3f &contactPoint, Vector3f &unitSurfaceNormal ) {
+    if (abs(particle.mPos.x) <= containerSize / 2 && abs(particle.mPos.y) <= containerSize / 2 && abs(particle.mPos.z) <= containerSize / 2)
         return false;
 
     char maxComponent = 'x';
-    float maxValue    = abs(particle.mPosition.x);
-    if (maxValue < abs(particle.mPosition.y)) {
+    float maxValue    = abs(particle.mPos.x);
+
+    if (maxValue < abs(particle.mPos.y))
+    {
         maxComponent = 'y';
-        maxValue     = abs(particle.mPosition.y);
+        maxValue     = abs(particle.mPos.y);
     }
-    if (maxValue < abs(particle.mPosition.z)) {
+
+    if (maxValue < abs(particle.mPos.z))
+    {
         maxComponent = 'z';
-        maxValue     = abs(particle.mPosition.z);
+        maxValue     = abs(particle.mPos.z);
     }
-    // 'unitSurfaceNormal' is based on the current position component with the largest absolute value
+  
+    // generate basic collisions for the box boundaries using the current position with the greatest absolute value.
     switch (maxComponent) {
-        case 'x':
-            if (particle.mPosition.x < -BOX_SIZE / 2) {
-                contactPoint = particle.mPosition;            contactPoint.x = -BOX_SIZE / 2;
-                if (particle.mPosition.y < -BOX_SIZE / 2)     contactPoint.y = -BOX_SIZE / 2;
-                else if (particle.mPosition.y > BOX_SIZE / 2) contactPoint.y =  BOX_SIZE / 2;
-                if (particle.mPosition.z < -BOX_SIZE / 2)     contactPoint.z = -BOX_SIZE / 2;
-                else if (particle.mPosition.z > BOX_SIZE / 2) contactPoint.z =  BOX_SIZE / 2;
-                unitSurfaceNormal = Vector3f( 1.0f,  0.0f,  0.0f);
-            }
-            else if (particle.mPosition.x > BOX_SIZE / 2) {
-                contactPoint = particle.mPosition;        
-                contactPoint.x =  BOX_SIZE / 2;
-                if (particle.mPosition.y < -BOX_SIZE / 2)     contactPoint.y = -BOX_SIZE / 2;
-                else if (particle.mPosition.y > BOX_SIZE / 2) contactPoint.y =  BOX_SIZE / 2;
-                if (particle.mPosition.z < -BOX_SIZE / 2)     contactPoint.z = -BOX_SIZE / 2;
-                else if (particle.mPosition.z > BOX_SIZE / 2) contactPoint.z =  BOX_SIZE / 2;
-                unitSurfaceNormal = Vector3f(-1.0f,  0.0f,  0.0f);
-            }
-            break;
+        
+
         case 'y':
-            if (particle.mPosition.y < -BOX_SIZE / 2) {
-                contactPoint = particle.mPosition;            contactPoint.y = -BOX_SIZE / 2;
-                if (particle.mPosition.x < -BOX_SIZE / 2)     contactPoint.x = -BOX_SIZE / 2;
-                else if (particle.mPosition.x > BOX_SIZE / 2) contactPoint.x =  BOX_SIZE / 2;
-                if (particle.mPosition.z < -BOX_SIZE / 2)     contactPoint.z = -BOX_SIZE / 2;
-                else if (particle.mPosition.z > BOX_SIZE / 2) contactPoint.z =  BOX_SIZE / 2;
+            if (particle.mPos.y < -containerSize / 2) 
+            {
+                contactPoint = particle.mPos;            contactPoint.y = -containerSize / 2;
+                if (particle.mPos.x < -containerSize / 2)     contactPoint.x = -containerSize / 2;
+                else if (particle.mPos.x > containerSize / 2) contactPoint.x =  containerSize / 2;
+                if (particle.mPos.z < -containerSize / 2)     contactPoint.z = -containerSize / 2;
+                else if (particle.mPos.z > containerSize / 2) contactPoint.z =  containerSize / 2;
                 unitSurfaceNormal = Vector3f( 0.0f,  1.0f,  0.0f);
             }
-            else if (particle.mPosition.y > BOX_SIZE / 2) {
-                contactPoint = particle.mPosition;            contactPoint.y =  BOX_SIZE / 2;
-                if (particle.mPosition.x < -BOX_SIZE / 2)     contactPoint.x = -BOX_SIZE / 2;
-                else if (particle.mPosition.x > BOX_SIZE / 2) contactPoint.x =  BOX_SIZE / 2;
-                if (particle.mPosition.z < -BOX_SIZE / 2)     contactPoint.z = -BOX_SIZE / 2;
-                else if (particle.mPosition.z > BOX_SIZE / 2) contactPoint.z =  BOX_SIZE / 2;
+            else if (particle.mPos.y > containerSize / 2) 
+            {
+                contactPoint = particle.mPos;            contactPoint.y =  containerSize / 2;
+                if (particle.mPos.x < -containerSize / 2)     contactPoint.x = -containerSize / 2;
+                else if (particle.mPos.x > containerSize / 2) contactPoint.x =  containerSize / 2;
+                if (particle.mPos.z < -containerSize / 2)     contactPoint.z = -containerSize / 2;
+                else if (particle.mPos.z > containerSize / 2) contactPoint.z =  containerSize / 2;
                 unitSurfaceNormal = Vector3f( 0.0f, -1.0f,  0.0f);
             }
             break;
+
         case 'z':
-            if (particle.mPosition.z < -BOX_SIZE / 2) {
-                contactPoint = particle.mPosition;            contactPoint.z = -BOX_SIZE / 2;
-                if (particle.mPosition.x < -BOX_SIZE / 2)     contactPoint.x = -BOX_SIZE / 2;
-                else if (particle.mPosition.x > BOX_SIZE / 2) contactPoint.x =  BOX_SIZE / 2;
-                if (particle.mPosition.y < -BOX_SIZE / 2)     contactPoint.y = -BOX_SIZE / 2;
-                else if (particle.mPosition.y > BOX_SIZE / 2) contactPoint.y =  BOX_SIZE / 2;
-                unitSurfaceNormal = Vector3f( 0.0f,  0.0f,  1.0f);
+            if (particle.mPos.z < -containerSize / 2)
+            {
+                contactPoint = particle.mPos;            contactPoint.z = -containerSize / 2;
+                if (particle.mPos.x < -containerSize / 2)     contactPoint.x = -containerSize / 2;
+                else if (particle.mPos.x > containerSize / 2) contactPoint.x = containerSize / 2;
+                if (particle.mPos.y < -containerSize / 2)     contactPoint.y = -containerSize / 2;
+                else if (particle.mPos.y > containerSize / 2) contactPoint.y = containerSize / 2;
+                unitSurfaceNormal = Vector3f(0.0f, 0.0f, 1.0f);
             }
-            else if (particle.mPosition.z > BOX_SIZE / 2) {
-                contactPoint = particle.mPosition;            contactPoint.z =  BOX_SIZE / 2;
-                if (particle.mPosition.x < -BOX_SIZE / 2)     contactPoint.x = -BOX_SIZE / 2;
-                else if (particle.mPosition.x > BOX_SIZE / 2) contactPoint.x =  BOX_SIZE / 2;
-                if (particle.mPosition.y < -BOX_SIZE / 2)     contactPoint.y = -BOX_SIZE / 2;
-                else if (particle.mPosition.y > BOX_SIZE / 2) contactPoint.y =  BOX_SIZE / 2;
-                unitSurfaceNormal = Vector3f( 0.0f,  0.0f, -1.0f);
+
+            else if (particle.mPos.z > containerSize / 2)
+            {
+                contactPoint = particle.mPos;            contactPoint.z = containerSize / 2;
+                if (particle.mPos.x < -containerSize / 2)     contactPoint.x = -containerSize / 2;
+                else if (particle.mPos.x > containerSize / 2) contactPoint.x = containerSize / 2;
+                if (particle.mPos.y < -containerSize / 2)     contactPoint.y = -containerSize / 2;
+                else if (particle.mPos.y > containerSize / 2) contactPoint.y = containerSize / 2;
+                unitSurfaceNormal = Vector3f(0.0f, 0.0f, -1.0f);
             }
             break;
+        case 'x':
+            if (particle.mPos.x < -containerSize / 2) {
+                contactPoint = particle.mPos;            contactPoint.x = -containerSize / 2;
+                if (particle.mPos.y < -containerSize / 2)     contactPoint.y = -containerSize / 2;
+                else if (particle.mPos.y > containerSize / 2) contactPoint.y = containerSize / 2;
+                if (particle.mPos.z < -containerSize / 2)     contactPoint.z = -containerSize / 2;
+                else if (particle.mPos.z > containerSize / 2) contactPoint.z = containerSize / 2;
+                unitSurfaceNormal = Vector3f(1.0f, 0.0f, 0.0f);
+            }
+            else if (particle.mPos.x > containerSize / 2) {
+                contactPoint = particle.mPos;        contactPoint.x = containerSize / 2;
+                if (particle.mPos.y < -containerSize / 2)     contactPoint.y = -containerSize / 2;
+                else if (particle.mPos.y > containerSize / 2) contactPoint.y = containerSize / 2;
+                if (particle.mPos.z < -containerSize / 2)     contactPoint.z = -containerSize / 2;
+                else if (particle.mPos.z > containerSize / 2) contactPoint.z = containerSize / 2;
+                unitSurfaceNormal = Vector3f(-1.0f, 0.0f, 0.0f);
+            }
+            break;
+       
     }
     return true;
 }
 
-void Fluid::updateVelocity( Vector3f &velocity, Vector3f unitSurfaceNormal, float penetrationDepth ) {
-    velocity = velocity - unitSurfaceNormal * (1 + RESTITUTION * penetrationDepth / (TIME_STEP * velocity.length())) * velocity.dot(unitSurfaceNormal);
+// collision impulse 
+void Fluid::velocityUpdate( Vector3f &velocity, Vector3f unitSurfaceNormal, float penetrationDepth ) {
+    velocity = velocity - unitSurfaceNormal * (1 + restitution * penetrationDepth / (TimeStep * velocity.length())) * velocity.dot(unitSurfaceNormal);
 }
 
-float Fluid::useDefaultKernel( Vector3f distVector, float supportRadius ) {
-    float dist = distVector.length();
-    if (dist > supportRadius)
-        return 0.0f;
-    else
-        return (315 / (64 * M_PI * powf(supportRadius, 9.0f))) * powf(supportRadius * supportRadius - dist * dist, 3.0f);
-}
 
-Vector3f Fluid::useDefaultKernel_gradient( Vector3f distVector, float supportRadius ) {
+
+// this exntire next section is  just the functions to generate the smoothing kernels 
+Vector3f Fluid::DefaultKernalGradiant( Vector3f distVector, float supportRadius ) {
     float dist = distVector.length();
     if (dist > supportRadius)
         return Vector3f(0.0f, 0.0f, 0.0f);
     else
-        return -(distVector * (945 / (32 * M_PI * powf(supportRadius, 9.0f))) * powf(supportRadius * supportRadius - dist * dist, 2.0f));
+        return -(distVector * (945 / (32 * M_PI * powf(supportRadius, 9.0f))) * powf(supportRadius * supportRadius - dist * dist, 2.0f));// is used to calculate smothing gradiant
 }
 
-float Fluid::useDefaultKernel_laplacian( Vector3f distVector, float supportRadius ) {
+float Fluid::defaultKernelLap( Vector3f distVector, float supportRadius ) {
     float dist = distVector.length();
     if (dist > supportRadius)
         return 0.0f;
@@ -288,20 +263,29 @@ float Fluid::useDefaultKernel_laplacian( Vector3f distVector, float supportRadiu
         return -(945 / (32 * M_PI * powf(supportRadius, 9.0f))) * (supportRadius * supportRadius - dist * dist) * (3 * supportRadius * supportRadius - 7 * dist * dist);
 }
 
-Vector3f Fluid::usePressureKernel_gradient( Vector3f distVector, float supportRadius ) {
+Vector3f Fluid::pressureKernelGradiant( Vector3f distVector, float supportRadius ) {
     float dist = distVector.length();
     if (dist > supportRadius)
         return Vector3f(0.0f, 0.0f, 0.0f);
-    else if (dist < 10e-5) // If ||r|| -> 0+
+    else if (dist < 10e-5) 
         return -(Vector3f(1.0f, 1.0f, 1.0f).normalize() * (45 / (M_PI * powf(supportRadius, 6.0f))) * powf(supportRadius - dist, 2.0f));
     else
         return -(distVector.normalize() * (45 / (M_PI * powf(supportRadius, 6.0f))) * powf(supportRadius - dist, 2.0f));
 }
 
-float Fluid::useViscosityKernel_laplacian( Vector3f distVector, float supportRadius ) {
+
+float Fluid::viscosKernalLap( Vector3f distVector, float supportRadius ) {
     float dist = distVector.length();
     if (dist > supportRadius)
         return 0.0f;
     else
         return (45 / (M_PI * powf(supportRadius, 6.0f))) * (supportRadius - dist);
+}
+
+float Fluid::useKernal(Vector3f distVector, float supportRadius) {
+    float dist = distVector.length();
+    if (dist > supportRadius)
+        return 0.0f;
+    else
+        return (315 / (64 * M_PI * powf(supportRadius, 9.0f))) * powf(supportRadius * supportRadius - dist * dist, 3.0f);
 }

@@ -1,6 +1,6 @@
 #ifndef _UTILITY_H_
 #define _UTILITY_H_
-
+// utilitie file contining just basic data types
 #include <iostream>
 #include <cmath>
 
